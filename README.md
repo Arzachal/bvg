@@ -4,3 +4,5 @@ An example e-commerce website project built for only portfolio purposes. Built w
 
 Source code nested inside "src" folder.
 Deployable code nested inside "dist" folder.
+
+Working  demo: http://aws-website-best-video-games-of4hs.s3-website-us-east-1.amazonaws.com
