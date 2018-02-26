@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-5">
+        <form>
+            <h5>Total Payment: {{shoppingCartProducts | total: 'amount': 'price' | currency: 'USD':'symbol-narrow'}}</h5>
+            <h5>Card Number</h5>
+            <input class="form-control" type="number" placeholder="**** **** **** ****">
+            <h5>Name and Surname</h5>
+            <input class="form-control" type="text" placeholder="Card Owner">
+            <h5>Valid Thru</h5>
+            <input class="form-control" type="number" placeholder="Month">
+            <input class="form-control" type="number" placeholder="Year">
+            <h5>CVC/CVC2</h5>
+            <button type="submit">Buy</button>
+        </form>
+    </div>
+    <div class="col-sm-5">
+        
+    </div>
+    <div class="col-sm-2"></div>
+</div>

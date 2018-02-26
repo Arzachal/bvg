@@ -1,0 +1,64 @@
+<hr>
+<div class="row">
+  <div class="col-sm-12">
+    <h6 style="font-style: italic;">Home {{ catName != null ? ('- ' + catName | namechanger) : '' }}</h6>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-sm-3">
+    <h4>Filters</h4>
+    <hr>
+    <h5>Available As</h5>
+    <div *ngFor="let filterItem of filterItems; let i = index;" class="form-check">
+      <label class="form-check-label">
+        <input type="checkbox" class="form-check-input" [(ngModel)]="filterItem.checked" [value]="filterItem.feature">{{filterItem.feature}}
+      </label>
+    </div>
+    <hr>
+    <h5>Price Filter</h5>
+    <div *ngIf="priceFormSubmitted">
+        <span>{{prices.minPrice > 0 ? (prices.minPrice | currency: 'USD':'symbol-narrow') : ('0' | currency: 'USD':'symbol-narrow') }}
+          {{prices.maxPrice !== null ? '-' : '' }}
+          {{prices.maxPrice !== null ? (prices.maxPrice | currency: 'USD':'symbol-narrow') : 'or above'}}</span>
+        <button class="buttonx" (click)="onResetPrice()">X</button>
+    </div>
+    <form [formGroup]="priceForm" (ngSubmit)="onSubmit()" *ngIf="!priceFormSubmitted">
+        <input type="number" min="0" placeholder="Min" formControlName="minPrice" class="minprice">
+        <input type="number" min="0" placeholder="Max" formControlName="maxPrice" class="maxprice">
+      <button type="submit" class="priceapply">Apply</button>
+    </form>
+  </div>
+  <div class="col-sm-9">
+    <div class="row">
+      <div class="col-sm-4">
+        <span>Sort by</span>
+        <select class="sortselect" (change)="onChangeSort($event.target.value)">
+          <option [value]="'name'">Name</option>
+          <option [value]="'price'">Price</option>
+          <option [value]="'feature1'">Feature</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <ng-container *ngFor="let product of products | filter: { feature1: ''} : checked() : false | sort: property ;">
+        <div *ngIf="((catName === product.url) || (catName === undefined) ) &&
+        ((product.price >= prices.minPrice) && (prices.maxPrice >= product?.price) ||
+        (prices.minPrice === null) && (prices.maxPrice === null) ||
+        (product.price >= prices.minPrice) && (prices.maxPrice === null) ||
+        (prices.minPrice === null) && (prices.maxPrice >= product.price))" class="product">
+          <a [routerLink]="[(catName === undefined) ? product.url + '/' + product.id : product.id]">
+            <img [src]="product.imagePath" alt="{{ product.name }} image">
+          </a>
+          <span>{{ product.name }} </span> <span>{{product.feature1}}</span>
+          <span *ngIf="product.available === false" style="font-size: 75%; color:red;">Out of Stock</span>
+          <br>
+          <span *ngIf="product.available === true">{{product.price | currency: 'USD':'symbol-narrow'}}</span>
+          <span *ngIf="product.available === false" style="color: rgb(109, 108, 108);">
+            {{product.price | currency: 'USD':'symbol-narrow'}}
+          </span>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

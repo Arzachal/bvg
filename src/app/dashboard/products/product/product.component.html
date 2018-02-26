@@ -1,0 +1,32 @@
+<hr>
+<div class="row">
+  <div class="col-sm-12">
+    <h6 style="font-style: italic;">Home - {{ product.category }} - {{ product.name }}</h6>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-sm-6">
+    <img class="product-img" [src]="product.imagePath" alt="{{product.name}}">
+  </div>
+  <div class="col-sm-6">
+    <h4>{{product.name}}
+      <span *ngIf="product.available === false" style="font-size: 50%; color:red;">Out of Stock</span>
+    </h4>
+    <span style="font-size: 75%; color: rgb(85, 85, 85);">Product ID: {{id}}</span>
+    <hr>
+    <div>
+      <p class="price">{{product.price | currency: 'USD':'symbol-narrow'}}</p>
+        <label style="font-size: 150%; margin-right: 10px;">Amount</label>
+        <button class="minusplus" (click)="amountDecrease()">-</button>
+        <input class="amountinput" type="number" value="1" min="1" [(ngModel)]="buyAmount">
+        <button class="minusplus" (click)="amountIncrease()">+</button>
+        <button class="addtocartbutton-disabled" *ngIf="product.available === false" disabled>Add to Cart</button>
+        <button class="addtocartbutton" *ngIf="product.available === true" (click)="onAddToShoppingCart()">Add to Cart</button>
+    </div>
+    <hr>
+    <p>Available as {{product.feature1}}</p>
+    <hr>
+    <p>{{product.description}}</p>
+  </div>
+</div>

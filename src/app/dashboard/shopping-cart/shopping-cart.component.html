@@ -1,0 +1,68 @@
+<hr>
+<div class="row">
+  <div class="col-sm-12">
+    <h3>Shopping Cart</h3>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-sm-8">
+    <div class="row">
+      <div class="col-sm-6">
+        <h5>Product{{(shoppingCartProducts | sum:'amount') === 1 ? '' : 's' }}</h5>
+      </div>
+      <div class="col-sm-2">
+        <h5>Amount</h5>
+      </div>
+      <div class="col-sm-2">
+        <h5>Price</h5>
+      </div>
+      <div class="col-sm-2">
+        <h5>Total</h5>
+      </div>
+    </div>
+    <hr>
+    <div class="row product" *ngFor="let product of shoppingCartProducts; let i = index">
+      <div class="col-sm-2">
+        <img class="image" [src]="product.imagePath" alt=" ">
+      </div>
+      <div class="col-sm-4">
+        <h6>
+          <a [routerLink]="''+ '/'+ product.url + '/' + product.id">{{product.name}}</a>
+        </h6>
+        <a (click)="onRemoveProduct()">Remove</a>
+      </div>
+      <div class="col-sm-2">
+        <input class="amount" type="number" value="{{product.amount}}" [(ngModel)]="product.amount">
+      </div>
+      <div class="col-sm-2">
+        <span class="price">{{product.price | currency: 'USD':'symbol-narrow'}}</span>
+      </div>
+      <div class="col-sm-2">
+        <span class="price">{{product.amount * product.price | currency: 'USD':'symbol-narrow'}}</span>
+      </div>
+    </div>
+    <div class="row product" *ngIf="shoppingCartProducts.length === 0">
+      <div class="col-sm-12">
+        <span>No products here!</span>
+      </div>
+    </div>
+    <hr>
+    <div class="row product"><button class="goshopping" [routerLink]="''">Continue Shopping</button></div>
+  </div>
+  <div class="col-sm-4 total-panel">
+    <div class="row">
+      <div class="col-sm-12">
+        <h5 class="totalprice">
+          Subtotal ({{shoppingCartProducts.length > 0 ? (shoppingCartProducts | sum:'amount') : 'no' }} product{{(shoppingCartProducts
+          | sum:'amount') > 1 ? 's' : '' }}):
+          <strong>
+            {{shoppingCartProducts.length > 0 ? ((shoppingCartProducts | total:'amount': 'price') | currency: 'USD':'symbol-narrow')
+            : ('0' | currency: 'USD':'symbol-narrow')}}</strong>
+        </h5>
+        <button *ngIf="shoppingCartProducts.length > 0" class="checkout" [routerLink]="'/payment'">Buy these!</button>
+        <button *ngIf="shoppingCartProducts.length === 0" class="disabled">No product</button>
+      </div>
+    </div>
+  </div>
+</div>

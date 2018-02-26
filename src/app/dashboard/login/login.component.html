@@ -1,0 +1,18 @@
+<hr>
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <form (ngSubmit)="onLogin(f)" #f="ngForm">
+      <div class="form-group">
+        <label for="email">E-Mail</label>
+        <input type="email" id="email" name="email" required email ngModel class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required password [minlength]='6' [maxlength]='20' ngModel class="form-control">
+      </div>
+      <button class="proceed" type="submit" [disabled]="!f.valid && !f.pristine && f.touched">Log In</button><a [routerLink]="'/signup'" class="signup">Signup</a>
+    </form>
+  </div>
+  <div class="col-sm-4"></div>
+</div>

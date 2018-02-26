@@ -1,0 +1,69 @@
+<div class="container">
+  <hr>
+  <div class="row">
+    <div class="col-sm-12">
+      <a class="logo" [routerLink]="''">
+        <h2>BUY THE BEST VIDEO GAMES</h2>
+      </a>
+    </div>
+  </div>
+  <hr>
+  <div
+    class="row" 
+    *ngIf="!pay">
+    <div class="col-sm-2">
+      <div 
+        class="category" 
+        [class.active]="router.url === '/strategy'">
+        <button 
+          routerLinkActive="active" 
+          [routerLink]="'strategy'">Strategy</button>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div 
+        class="category" 
+        [class.active]="router.url === '/adventure-rpg'">
+        <button 
+          routerLinkActive="active" 
+          [routerLink]="'adventure-rpg'">Adventure/RPG</button>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div 
+        class="category" 
+        [class.active]="router.url === '/action-fps'">
+        <button 
+          routerLinkActive="active" 
+          [routerLink]="'action-fps'">Action/FPS</button>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div 
+        class="category" 
+        [class.active]="router.url === '/racing'">
+        <button 
+          [routerLink]="'racing'">Racing</button>
+      </div>
+    </div>
+    <div class="col-sm-2"></div>
+    <div class="col-sm-1">
+      <ng-template [ngIf]="!authService.isAuthenticated()">
+          <button 
+            [routerLink]="'login'" 
+            class="menubutton">Login</button>
+      </ng-template>
+        <button 
+          *ngIf="authService.isAuthenticated()" 
+          (click)="onLogout()" 
+          class="menubutton">Logout</button>
+    </div>
+    <div class="col-sm-1">
+        <button 
+          [routerLink]="'shopping-cart'" 
+          class="menubutton">
+            Cart{{cartProducts.length > 0 ? '('+ (cartProducts | sum:'amount') + ')' : null }}
+        </button>
+    </div>
+  </div>
+</div>
