@@ -8,8 +8,6 @@ import { AppService } from '../app.service';
 })
 export class DashboardComponent {
   constructor(private appService: AppService) {
-    this.loading = this.appService.loading;
   }
 
-  loading: boolean;
 }
