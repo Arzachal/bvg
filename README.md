@@ -5,14 +5,14 @@ An example e-commerce website project built for only portfolio purposes. Built w
 Source code nested inside "src" folder.
 Deployable code nested inside "dist" folder.
 
-##### Features:
+#### Features:
 
 - Products that can be filtered by their categories(from the header) or by their features and prices(from Filters tab on the left).
 - Individual product page with "Add to Cart" button and amount input.
 - Shopping Cart with changeable amount inputs.
 - Checkout Page with no action.
 
-##### Upcoming Development:
+#### Upcoming Development:
 
 -Complete styling overhaul with LESS.
 -Discount Feature.
