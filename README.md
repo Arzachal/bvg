@@ -14,8 +14,8 @@ Deployable code nested inside "dist" folder.
 
 #### Upcoming Development:
 
--Complete styling overhaul with LESS.
--Discount Feature.
--Stock feature with amounts. Currently only a boolean property for products.
+- Complete styling overhaul with LESS.
+- Discount Feature.
+- Stock feature with amounts. Currently only a boolean property for products.
 
 [Working  demo](http://aws-website-best-video-games-of4hs.s3-website-us-east-1.amazonaws.com)
